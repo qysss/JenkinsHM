@@ -10,11 +10,11 @@ allure {
     report {
         version.set('2.20.1')
     }
-    adapter { // отвечает за появление папочки build/allure-results
-        aspectjWeaver.set(true) //обработка аннотации @Step
+    adapter {
+        aspectjWeaver.set(true)
         frameworks {
-            junit5 { //название фреймворка
-                adapterVersion.set('2.20.1') //версия интеграции фреймворка и Allure
+            junit5 {
+                adapterVersion.set('2.20.1')
             }
         }
     }
@@ -33,12 +33,18 @@ dependencies {
             'com.github.javafaker:javafaker:1.0.2',
     )
 
-    testRuntimeOnly('org.junit.jupiter:junit-jupiter-engine:5.9.2')
+    testRuntimeOnly(
+            'org.junit.jupiter:junit-jupiter-engine:5.9.2')
 }
 
-test {
-    useJUnitPlatform()
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+tasks.withType(Test) {
     systemProperties(System.getProperties())
+    useJUnitPlatform()
+
     testLogging {
         lifecycle {
             events "started", "skipped", "failed", "standard_error", "standard_out"
@@ -46,3 +52,30 @@ test {
         }
     }
 }
+
+task smoke_tests(type: Test) {
+    useJUnitPlatform {
+        includeTags("smoke")
+    }
+}
+
+task two_test(type: Test) {
+    useJUnitPlatform {
+        includeTags("one_property") //запуск двух таск
+        includeTags("hello")
+    }
+}
+
+task tag_example_test(type: Test) {
+    useJUnitPlatform {
+        includeTags("needed", "negative") //запускаем с этими тэгами
+        excludeTags("prod") //с этим тэгом не трогаем
+    }
+}
+task tag_homework(type: Test) {
+    useJUnitPlatform {
+        includeTags("regress", "regress_old_package")
+        excludeTags("smoke")
+    }
+}
+
