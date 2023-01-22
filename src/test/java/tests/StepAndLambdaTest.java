@@ -1,21 +1,24 @@
+package tests;
+
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.logevents.SelenideLogger;
+import helpers.TestBase;
+import helpers.WebSteps;
 import io.qameta.allure.selenide.AllureSelenide;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static com.codeborne.selenide.Selectors.withText;
-import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.open;
 import static io.qameta.allure.Allure.step;
 import static org.openqa.selenium.By.linkText;
 
-public class StepAndLambdaTest {
+public class StepAndLambdaTest extends TestBase {
 
     WebSteps steps = new WebSteps();
-
     private static final String REPOSITORY = "qysss/AllureHM";
     private static final int ISSUE = 1;
 
@@ -61,9 +64,5 @@ public class StepAndLambdaTest {
 
     }
 
-    @AfterEach
-    void attacmants(){
-
-    }
 }
 

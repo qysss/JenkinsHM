@@ -1,3 +1,4 @@
+package helpers;
 
 import io.qameta.allure.Step;
 
@@ -10,27 +11,27 @@ import static org.openqa.selenium.By.linkText;
 public class WebSteps {
 
     @Step("Opening main page")
-    void openMainPage() {
+    public void openMainPage() {
         open("https://github.com");
     }
 
     @Step("Searching for repository {repo}")
-    void searchForRepository(String repo) {
+    public void searchForRepository(String repo) {
         $(".header-search-input").setValue(repo).pressEnter();
     }
 
     @Step("Clicking on repository link {repo}")
-    void clickOnRepositoryLink(String repo) {
+    public void clickOnRepositoryLink(String repo) {
         $(linkText(repo)).click();
     }
 
     @Step("Opening issues tab")
-    void openIssuesTab() {
+    public void openIssuesTab() {
         $("#issues-tab").click();
     }
 
     @Step("Checking for issue with number {issue}")
-    void shouldSeeIssueWithNumber(int issue) {
+    public void shouldSeeIssueWithNumber(int issue) {
         $(withText("#" + issue)).shouldBe(visible);
     }
 
