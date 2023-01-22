@@ -3,6 +3,7 @@ package tests;
 import com.codeborne.selenide.Condition;
 import helpers.TestBase;
 import helpers.WebSteps;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import static com.codeborne.selenide.Selectors.withText;
@@ -18,6 +19,7 @@ public class StepAndLambdaTest extends TestBase {
     private static final int ISSUE = 1;
 
     @Test
+    @Tag("prod")
     public void testLamdaStep() {
         step("Opening main page", () -> open("https://github.com"));
 
@@ -37,6 +39,7 @@ public class StepAndLambdaTest extends TestBase {
     }
 
     @Test
+    @Tag("regress")
     void annotatedStepTest() {
         steps.openMainPage();
         steps.searchForRepository(REPOSITORY);

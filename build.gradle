@@ -61,20 +61,14 @@ task smoke_tests(type: Test) {
 
 task two_test(type: Test) {
     useJUnitPlatform {
-        includeTags("one_property") //запуск двух таск
-        includeTags("hello")
+        includeTags("smoke") //запуск двух таск
+        includeTags("prod")
     }
 }
 
-task tag_example_test(type: Test) {
-    useJUnitPlatform {
-        includeTags("needed", "negative") //запускаем с этими тэгами
-        excludeTags("prod") //с этим тэгом не трогаем
-    }
-}
 task tag_homework(type: Test) {
     useJUnitPlatform {
-        includeTags("regress", "regress_old_package")
+        includeTags("regress", "prod")
         excludeTags("smoke")
     }
 }
