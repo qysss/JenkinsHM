@@ -5,8 +5,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import static com.codeborne.selenide.Selectors.withText;
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.open;
+import static com.codeborne.selenide.Selenide.*;
 import static org.openqa.selenium.By.linkText;
 
 public class ListenerTest {
@@ -27,6 +26,7 @@ public class ListenerTest {
         $(linkText("qysss/AllureHM")).click();
         $("#issues-tab").click();
         $(withText("#1")).should(Condition.exist);
+
     }
 
 }

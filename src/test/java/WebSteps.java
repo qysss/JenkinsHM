@@ -1,3 +1,4 @@
+
 import io.qameta.allure.Step;
 
 import static com.codeborne.selenide.Condition.visible;
@@ -32,4 +33,5 @@ public class WebSteps {
     void shouldSeeIssueWithNumber(int issue) {
         $(withText("#" + issue)).shouldBe(visible);
     }
+
 }

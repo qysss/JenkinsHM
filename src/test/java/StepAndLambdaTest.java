@@ -5,12 +5,13 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import static com.codeborne.selenide.Selectors.withText;
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.open;
+import static com.codeborne.selenide.Selenide.*;
 import static io.qameta.allure.Allure.step;
 import static org.openqa.selenium.By.linkText;
 
 public class StepAndLambdaTest {
+
+    WebSteps steps = new WebSteps();
 
     private static final String REPOSITORY = "qysss/AllureHM";
     private static final int ISSUE = 1;
@@ -36,17 +37,17 @@ public class StepAndLambdaTest {
         step("Checking for the presence of issue" + ISSUE, () -> {
             $(withText("#" + ISSUE)).should(Condition.exist);
         });
+
     }
 
     @Test
     void annotatedStepTest() {
-        WebSteps steps = new WebSteps();
-
         steps.openMainPage();
         steps.searchForRepository(REPOSITORY);
         steps.clickOnRepositoryLink(REPOSITORY);
         steps.openIssuesTab();
         steps.shouldSeeIssueWithNumber(ISSUE);
+
     }
 }
 
